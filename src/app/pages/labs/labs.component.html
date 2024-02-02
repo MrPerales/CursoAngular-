@@ -24,4 +24,11 @@
 <button (dblclick)="handlerDoubleClick()">Double click</button>
 <br />
 <p>event change</p>
+<!-- ejecuta el metodo cuando se da enter o click en otro lugar -->
 <input type="text" (change)="handlerChange($event)" />
+<p>event keydown</p>
+<!-- ejecuta el metodo en tiempo real  -->
+<input type="text" (keydown)="handlerKeydown($event)" />
+<p>event keydown shift + T</p>
+<!-- ejecuta el metodo cuando se preciona esa combinacion de teclas shift + T -->
+<input type="text" (keydown.shift.t)="handlerClick()" />
