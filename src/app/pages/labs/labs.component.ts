@@ -12,4 +12,13 @@ export class LabsComponent {
   welcome = 'welcome to app';
   tasks = ['instalar Angular CLI', 'crear Proyecto ', 'crear compnentes'];
   name = 'Carlos';
+  image =
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png';
+  disabled = true;
+  person = {
+    name: 'Carlos',
+    email: 'carlos@mail',
+    avatar:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
+  };
 }

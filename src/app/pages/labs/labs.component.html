@@ -5,8 +5,14 @@
     {{ task }}
   </li>
 </ul>
-<br />
+<hr />
 <h2>{{ "Hola".repeat(5) }}</h2>
 <p>la suma de 3 + 3 {{ 3 + 3 }}</p>
 
 <p>hola soy {{ name }} !!</p>
+
+<hr />
+<p>Name : {{ person.name }}</p>
+<img class="img" [src]="person.avatar" alt="github" />
+<input type="email" [value]="person.email" />
+<button [disabled]="disabled">click me</button>
