@@ -16,3 +16,12 @@
 <img class="img" [src]="person.avatar" alt="github" />
 <input type="email" [value]="person.email" />
 <button [disabled]="disabled">click me</button>
+
+<hr />
+<!-- event binding : click and double click -->
+<button (click)="handlerClick()">Click me</button>
+<br />
+<button (dblclick)="handlerDoubleClick()">Double click</button>
+<br />
+<p>event change</p>
+<input type="text" (change)="handlerChange($event)" />

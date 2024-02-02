@@ -21,4 +21,14 @@ export class LabsComponent {
     avatar:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
   };
+  handlerClick() {
+    alert('hello ');
+  }
+  handlerDoubleClick() {
+    alert('double click ');
+  }
+  handlerChange(event: Event) {
+    console.log(event);
+    // console.log(event.target.value);
+  }
 }
