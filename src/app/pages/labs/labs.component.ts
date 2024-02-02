@@ -11,4 +11,5 @@ import { CommonModule } from '@angular/common';
 export class LabsComponent {
   welcome = 'welcome to app';
   tasks = ['instalar Angular CLI', 'crear Proyecto ', 'crear compnentes'];
+  name = 'Carlos';
 }
