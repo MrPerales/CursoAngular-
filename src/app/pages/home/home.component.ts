@@ -15,4 +15,15 @@ export class HomeComponent {
     'crear compnentes',
     'crear servicio',
   ]);
+
+  addNewTask(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newTask = input.value;
+    if (newTask.length > 0) {
+      this.tasks.update((task) => [...task, newTask]);
+    }
+  }
+  deleteTask(index: number) {
+    this.tasks.update((tasks) => tasks.filter((_, i) => i !== index));
+  }
 }
