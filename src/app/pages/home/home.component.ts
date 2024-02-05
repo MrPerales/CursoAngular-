@@ -42,4 +42,17 @@ export class HomeComponent {
   deleteTask(index: number) {
     this.tasks.update((tasks) => tasks.filter((_, i) => i !== index));
   }
+  updateTask(index: number) {
+    this.tasks.update((tasks) => {
+      return tasks.map((task, i) => {
+        if (i === index) {
+          return {
+            ...task,
+            completed: !task.completed,
+          };
+        }
+        return task;
+      });
+    });
+  }
 }
