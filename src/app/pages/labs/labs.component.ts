@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-labs',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './labs.component.html',
   styleUrl: './labs.component.css',
 })
@@ -27,6 +28,11 @@ export class LabsComponent {
     avatar:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
   });
+  colorCtrl = new FormControl();
+  constructor() {
+    // suscribe para estar escuchando los cambios
+    this.colorCtrl.valueChanges.subscribe((value) => console.log(value));
+  }
   handlerClick() {
     alert('hello ');
   }
