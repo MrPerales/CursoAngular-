@@ -60,4 +60,12 @@ export class LabsComponent {
       age: parseInt(newValue, 10),
     }));
   }
+  changeName(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newName = input.value;
+    this.person.update((prevState) => ({
+      ...prevState,
+      name: newName,
+    }));
+  }
 }
