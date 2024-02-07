@@ -29,6 +29,9 @@ export class LabsComponent {
       'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
   });
   colorCtrl = new FormControl();
+  widthCtrl = new FormControl(50, {
+    nonNullable: true,
+  });
   constructor() {
     // suscribe para estar escuchando los cambios
     this.colorCtrl.valueChanges.subscribe((value) => console.log(value));
