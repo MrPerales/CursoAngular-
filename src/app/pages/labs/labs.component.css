@@ -10,3 +10,12 @@
   display: block;
   background-color: blue;
 }
+.message-error {
+  background-color: #f00;
+  color: #fff;
+  opacity: 0;
+  transition: all linear 0.5s;
+}
+.message-error.show {
+  opacity: 1;
+}

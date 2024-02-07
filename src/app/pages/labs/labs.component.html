@@ -75,7 +75,7 @@
   <p>color : {{ colorCtrl.value }}</p>
 
   <hr />
-
+  <h3>styles dinamicos</h3>
   <input type="color" [formControl]="colorCtrl" />
   <svg>
     <g>
@@ -91,4 +91,20 @@
   <hr />
   <input type="number" [formControl]="widthCtrl" />
   <span class="box" [style.width.px]="widthCtrl.value"></span>
+
+  <hr />
+  <h3>class dinamicos</h3>
+
+  <input type="text" [formControl]="nameCtrl" /><br /><br /><br />
+
+  <!--clas.show, puede ser cualquier nombre  -->
+  <!-- touched , que esta interactuando el usuario con el input -->
+  <span
+    class="message-error"
+    [class.show]="nameCtrl.invalid && nameCtrl.touched"
+  >
+    Nombre Invalido
+  </span>
+
+  <input type="text" />
 </div>
