@@ -1,11 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { task } from '../../models/task.model';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -22,14 +23,26 @@ export class HomeComponent {
       completed: false,
     },
   ]);
-
-  getTask(event: Event) {
-    const input = event.target as HTMLInputElement;
-    const newTask = input.value;
-    if (newTask.length > 0) {
+  // ('valor por defecto', {opciones} )
+  taskControl = new FormControl('', {
+    nonNullable: true,
+    validators: [Validators.required, Validators.minLength(3)],
+  });
+  validateControl() {
+    // trim() elimina espacios
+    if (this.taskControl.valid && this.taskControl.value.trim().length > 3) {
+      const newTask = this.taskControl.value;
       this.addNewTask(newTask);
+      this.taskControl.setValue('');
     }
   }
+  // getTask(event: Event) {
+  //   const input = event.target as HTMLInputElement;
+  //   const newTask = input.value;
+  //   if (newTask.length > 0) {
+  //     this.addNewTask(newTask);
+  //   }
+  // }
   addNewTask(title: string) {
     const newTask = {
       id: Date.now(),
