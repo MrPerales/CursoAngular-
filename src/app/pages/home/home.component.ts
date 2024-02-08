@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { task } from '../../models/task.model';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -28,6 +28,26 @@ export class HomeComponent {
     nonNullable: true,
     validators: [Validators.required, Validators.minLength(3)],
   });
+  // filtrado de tareas
+  // <filters> es el tipo de dato
+  filter = signal<'all' | 'pending' | 'completed'>('all');
+  changeFilter(filter: 'all' | 'pending' | 'completed') {
+    this.filter.set(filter);
+  }
+  // computer ( elementos a los que vamos a reaccionar cuando cambien (signals ))
+  tasksByFilter = computed(() => {
+    const filter = this.filter();
+    const tasks = this.tasks();
+    if (filter === 'pending') {
+      return tasks.filter((task) => !task.completed);
+    }
+    if (filter === 'completed') {
+      return tasks.filter((task) => task.completed);
+    }
+    // filter all
+    return tasks;
+  });
+
   validateControl() {
     // trim() elimina espacios
     if (this.taskControl.valid && this.taskControl.value.trim().length > 3) {
