@@ -15,11 +15,6 @@
   </header>
   <div class="container todoapp-wrapper">
     <!-- This section should be hidden by default and shown when there are todos -->
-    <pre>
-      <code>
-        {{tasks() | json}}
-      </code>
-    </pre>
     <section class="main">
       <ul class="todo-list">
         <li
@@ -74,7 +69,7 @@
       </ul>
     </section>
     <!-- This footer should be hidden by default and shown when there are todos -->
-    <footer class="footer">
+    <footer class="footer" *ngIf="tasksByFilter().length > 0">
       <!-- This should be `0 items left` by default -->
       <span class="todo-count">
         <strong>{{ tasksByFilter().length }}</strong>
