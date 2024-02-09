@@ -26,22 +26,22 @@
           *ngFor="let task of tasksByFilter(); index as i"
           [class.completed]="task.completed"
           [class.editing]="task.editing"
-          (dblclick)="updateTaskEditionMode(i)"
+          (dblclick)="updateTaskEditionMode(task.id)"
         >
           <div class="view">
             <input
               class="toggle"
               type="checkbox"
               [checked]="task.completed"
-              (change)="updateTask(i)"
+              (change)="updateTask(task.id)"
             />
             <label>{{ task.title }} </label>
-            <button class="destroy" (click)="deleteTask(i)"></button>
+            <button class="destroy" (click)="deleteTask(task.id)"></button>
           </div>
           <input
             class="edit"
             [value]="task.title"
-            (keydown.enter)="updateTaskTitle($event, i)"
+            (keydown.enter)="updateTaskTitle($event, task.id)"
           />
         </li>
         <!-- completed -->

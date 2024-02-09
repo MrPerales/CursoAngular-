@@ -72,13 +72,13 @@ export class HomeComponent {
     this.tasks.update((task) => [...task, newTask]);
   }
 
-  deleteTask(index: number) {
-    this.tasks.update((tasks) => tasks.filter((_, i) => i !== index));
+  deleteTask(id: number) {
+    this.tasks.update((tasks) => tasks.filter((task) => task.id !== id));
   }
-  updateTask(index: number) {
+  updateTask(id: number) {
     this.tasks.update((tasks) => {
-      return tasks.map((task, i) => {
-        if (i === index) {
+      return tasks.map((task) => {
+        if (task.id === id) {
           return {
             ...task,
             completed: !task.completed,
@@ -88,10 +88,10 @@ export class HomeComponent {
       });
     });
   }
-  updateTaskEditionMode(index: number) {
+  updateTaskEditionMode(id: number) {
     this.tasks.update((tasks) => {
-      return tasks.map((task, i) => {
-        if (i === index) {
+      return tasks.map((task) => {
+        if (task.id === id) {
           return {
             ...task,
             editing: true,
@@ -105,16 +105,15 @@ export class HomeComponent {
       });
     });
   }
-  updateTaskTitle(event: Event, index: number) {
+  updateTaskTitle(event: Event, id: number) {
     //no poder editar si esta completada
-    if (this.tasks()[index].completed) return;
 
     const input = event.target as HTMLInputElement;
     const newTitle = input.value.trim();
     this.tasks.update((tasks) => {
-      return tasks.map((task, i) => {
+      return tasks.map((task) => {
         // evitamos que agregen puros espacios
-        if (i === index && newTitle.length > 1) {
+        if (task.id === id && newTitle.length > 1 && !task.completed) {
           return {
             ...task,
             title: newTitle,
