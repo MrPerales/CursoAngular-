@@ -1,4 +1,11 @@
-import { Component, computed, signal } from '@angular/core';
+import {
+  Component,
+  Injector,
+  computed,
+  effect,
+  inject,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { task } from '../../models/task.model';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -11,18 +18,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  tasks = signal<task[]>([
-    {
-      id: Date.now(),
-      title: 'instalar angular CLI',
-      completed: false,
-    },
-    {
-      id: Date.now(),
-      title: 'crear Proyecto',
-      completed: false,
-    },
-  ]);
+  tasks = signal<task[]>([]);
   // ('valor por defecto', {opciones} )
   taskControl = new FormControl('', {
     nonNullable: true,
@@ -47,6 +43,27 @@ export class HomeComponent {
     // filter all
     return tasks;
   });
+  injector = inject(Injector);
+  ngOnInit() {
+    const tasksLocalStorage = localStorage.getItem('tasks');
+    if (tasksLocalStorage) {
+      const tasks = JSON.parse(tasksLocalStorage);
+      // guardamos en el estado de task
+      this.tasks.set(tasks);
+    }
+    this.trakTasks();
+  }
+  trakTasks() {
+    //se utiliza injector solo cuando el efect no esta en el constructor
+    effect(
+      () => {
+        const tasks = this.tasks();
+        console.log(tasks);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+      },
+      { injector: this.injector }
+    );
+  }
 
   validateControl() {
     // trim() elimina espacios
